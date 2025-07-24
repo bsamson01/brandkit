@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  brandkit:
+    build: .
+    ports:
+      - "3001:3000"  # Frontend
+      - "8001:8000"  # Backend
+    volumes:
+      # Mount source code for hot reloads
+      - .:/app
+      # Exclude node_modules to avoid conflicts
+      - /app/frontend/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    tty: true
+    restart: unless-stopped 

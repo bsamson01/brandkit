@@ -22,8 +22,12 @@ BrandKit is a modern, user-friendly application designed to help businesses and 
 
 - Node.js (v16 or higher)
 - npm or yarn package manager
+- Python 3.8 or higher
+- Docker and Docker Compose (for containerized development)
 
 ### Installation
+
+#### Option 1: Using Docker (Recommended)
 
 1. Clone the repository:
 ```bash
@@ -31,15 +35,39 @@ git clone https://github.com/bsamson01/brandkit.git
 cd brandkit
 ```
 
-2. Install dependencies:
+2. Build and start the application with Docker:
 ```bash
+docker-compose up --build
+```
+
+3. Open your browser and navigate to:
+   - Frontend: `http://localhost:3001`
+   - Backend API: `http://localhost:8001`
+
+The application will automatically reload when you make changes to the source code.
+
+#### Option 2: Local Development
+
+1. Clone the repository:
+```bash
+git clone https://github.com/bsamson01/brandkit.git
+cd brandkit
+```
+
+2. Install frontend dependencies:
+```bash
+cd frontend
 npm install
 ```
 
-3. Start the development server:
+3. Install backend dependencies:
 ```bash
-npm run dev
+pip install -r requirements.txt
 ```
+
+4. Start the development servers:
+   - Frontend: `cd frontend && npm run dev`
+   - Backend: `cd backend && python main.py`
 
 ## Usage
 
