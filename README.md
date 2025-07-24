@@ -40,11 +40,19 @@ cd brandkit
 docker-compose up --build
 ```
 
-3. Open your browser and navigate to:
+3. Set up environment variables (optional for backend):
+   ```bash
+   cp .env.example .env
+   # Edit .env and add your OpenAI API key for backend functionality
+   ```
+
+4. Open your browser and navigate to:
    - Frontend: `http://localhost:3001`
    - Backend API: `http://localhost:8001`
 
 The application will automatically reload when you make changes to the source code.
+
+**Note:** The backend requires an OpenAI API key to function. If you don't have one, the frontend will still work independently.
 
 #### Option 2: Local Development
 
