@@ -1,19 +1,35 @@
 version: '3.8'
 
 services:
-  brandkit:
-    build: .
-    ports:
-      - "3001:5173"  # Frontend (Vite)
-      - "8001:8000"  # Backend
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: brandkit-backend
+    env_file:
+      - .env  # Provide OPENAI_API_KEY here
     volumes:
-      # Mount source code for hot reloads
-      - .:/app
-      # Exclude node_modules to avoid conflicts
-      - /app/frontend/node_modules
+      - ./backend:/app
+      - ./requirements.txt:/app/requirements.txt
+    ports:
+      - "8000:8000"
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: brandkit-frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules  # Avoid syncing node_modules from host
     environment:
-      - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
-    stdin_open: true
-    tty: true
+      - NODE_ENV=development
+    ports:
+      - "5173:5173"
+    command: npm run dev -- --host --port 5173
+    depends_on:
+      - backend
     restart: unless-stopped 
