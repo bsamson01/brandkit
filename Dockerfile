@@ -22,5 +22,5 @@ COPY . .
 # Expose ports
 EXPOSE 3000 8000
 
-# Start the application
-CMD ["sh", "-c", "cd /app/frontend && npm run dev & cd /app/backend && python3 main.py"] 
+# Start the application (frontend only for now)
+CMD ["sh", "-c", "cd /app/frontend && npm run dev"] 

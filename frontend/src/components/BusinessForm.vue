@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto p-4 flex-1 flex flex-col justify-center">
-    <h1 class="text-2xl font-bold mb-4 text-center">BrandKit Builder</h1>
+    <h1 class="text-2xl font-bold mb-4 text-center">BrandKit Builder - Docker Edition</h1>
     <form @submit.prevent="handleSubmit" class="space-y-4 max-w-md mx-auto bg-white p-6 rounded shadow">
       <div>
         <label class="block text-sm font-medium mb-1" for="business_name">Business Name *</label>
