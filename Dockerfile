@@ -10,7 +10,8 @@ COPY requirements.txt ./
 
 # Install Python dependencies
 RUN apk add --no-cache python3 py3-pip
-RUN pip3 install --break-system-packages -r requirements.txt
+RUN python3 -m pip install --no-cache-dir --upgrade pip && \
+    pip3 install --no-cache-dir -r requirements.txt
 
 # Install Node.js dependencies
 WORKDIR /app/frontend
@@ -20,7 +21,7 @@ RUN npm install
 COPY . .
 
 # Expose ports
-EXPOSE 3000 8000
+EXPOSE 5173 8000
 
 # Start the application (frontend only for now)
 CMD ["sh", "-c", "cd /app/frontend && npm run dev"] 
